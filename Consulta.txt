@@ -1,0 +1,19 @@
+Select upper(RPAD(e.first_name,15,'$')) 
+from employees e;
+
+select   SUBSTR('20210618@miucateci.edu.do',1,4) || '-' || SUBSTR('20210618@miucateci.edu.do',5,4) matricula  from dual;
+
+select   SUBSTR('20210618@miucateci.edu.do',1,4);
+
+select INSTR('20210618@miucateci.edu.do','@') from dual;
+
+select SUBSTR('20210618@miucateci.edu.do',INSTR('20210618@miucateci.edu.do','@')) dominio from dual;
+
+
+select SUBSTR('edward44@falcondo.com.do',INSTR('edward44@falcondo.com.do','@')) dominio from dual;
+
+select 
+
+jose.perez@ucateci.edu.do
+manuel23@hotmail.com
+edward44@falcondo.com.do

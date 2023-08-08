@@ -1,0 +1,19 @@
+   
+
+Select * from departments;
+
+Select * from Jobs;
+
+SELECT * FROM Job_history;
+
+SELECT e.employee_id "Codigo", e.first_name || ' ' || e.last_name "Nombre Y Apellido",
+j.job_title "Puesto", d.department_name "Departamento"
+FROM employees e, job_history jh, jobs j, departments d
+WHERE e.employee_id = jh.employee_id (+)
+AND jh.job_id = j.job_id (+)
+AND e.department_id = d.department_id;
+
+
+Select first_name || ' ' || last_name "Nombre Y Apellido" from employees
+where first_name = initcap('DAVID');
+

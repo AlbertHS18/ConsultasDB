@@ -1,0 +1,513 @@
+
+
+----SQL> Select * from v$database;
+
+
+----SQL> alter user system identified by Admin23r2;
+
+User altered.
+
+----SQL> connect sys
+Enter password:
+
+
+
+
+----SQL> connect sys as sysdba;
+Enter password:
+Connected.
+
+
+----SQL> select * from HR.departments;
+
+DEPARTMENT_ID DEPARTMENT_NAME                MANAGER_ID LOCATION_ID
+------------- ------------------------------ ---------- -----------
+           10 Administration                        200        1700
+           20 Marketing                             201        1800
+           30 Purchasing                            114        1700
+           40 Human Resources                       203        2400
+           50 Shipping                              121        1500
+           60 IT                                    103        1400
+           70 Public Relations                      204        2700
+           80 Sales                                 145        2500
+           90 Executive                             100        1700
+          100 Finance                               108        1700
+          110 Accounting                            205        1700
+
+DEPARTMENT_ID DEPARTMENT_NAME                MANAGER_ID LOCATION_ID
+------------- ------------------------------ ---------- -----------
+          120 Treasury                                         1700
+          130 Corporate Tax                                    1700
+          140 Control And Credit                               1700
+          150 Shareholder Services                             1700
+          160 Benefits                                         1700
+          170 Manufacturing                                    1700
+          180 Construction                                     1700
+          190 Contracting                                      1700
+          200 Operations                                       1700
+          210 IT Support                                       1700
+          220 NOC                                              1700
+
+DEPARTMENT_ID DEPARTMENT_NAME                MANAGER_ID LOCATION_ID
+------------- ------------------------------ ---------- -----------
+          230 IT Helpdesk                                      1700
+          240 Government Sales                                 1700
+          250 Retail Sales                                     1700
+          260 Recruiting                                       1700
+          270 Payroll                                          1700
+
+27 rows selected.
+
+
+
+----SQL> DESC HR.employees;
+
+
+
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(6)
+ FIRST_NAME                                         VARCHAR2(20)
+ LAST_NAME                                 NOT NULL VARCHAR2(25)
+ EMAIL                                     NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                       VARCHAR2(20)
+ HIRE_DATE                                 NOT NULL DATE
+ JOB_ID                                    NOT NULL VARCHAR2(10)
+ SALARY                                             NUMBER(8,2)
+ COMMISSION_PCT                                     NUMBER(2,2)
+ MANAGER_ID                                         NUMBER(6)
+ DEPARTMENT_ID                                      NUMBER(4)
+
+
+
+
+
+
+
+----SQL> select department_id,location_id  from HR.departments;
+
+
+DEPARTMENT_ID LOCATION_ID
+------------- -----------
+           10        1700
+           20        1800
+           30        1700
+           40        2400
+           50        1500
+           60        1400
+           70        2700
+           80        2500
+           90        1700
+          100        1700
+          110        1700
+
+DEPARTMENT_ID LOCATION_ID
+------------- -----------
+          120        1700
+          130        1700
+          140        1700
+          150        1700
+          160        1700
+          170        1700
+          180        1700
+          190        1700
+          200        1700
+          210        1700
+          220        1700
+
+DEPARTMENT_ID LOCATION_ID
+------------- -----------
+          230        1700
+          240        1700
+          250        1700
+          260        1700
+          270        1700
+
+27 rows selected.
+
+----SQL> connect system/Admin23r2
+Connected.
+
+----SQL> alter user HR identified by Hr23;
+
+User altered.
+
+
+
+
+----SQL> alter user hr account unlock;
+
+
+
+User altered.
+
+SQL> connect HR/Hr23
+Connected.
+SQL> SELECT last_name, salary, salary + 300 FROM employees;
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+King                           24000      24300
+Kochhar                        17000      17300
+De Haan                        17000      17300
+Hunold                          9000       9300
+Ernst                           6000       6300
+Austin                          4800       5100
+Pataballa                       4800       5100
+Lorentz                         4200       4500
+Greenberg                      12008      12308
+Faviet                          9000       9300
+Chen                            8200       8500
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Sciarra                         7700       8000
+Urman                           7800       8100
+Popp                            6900       7200
+Raphaely                       11000      11300
+Khoo                            3100       3400
+Baida                           2900       3200
+Tobias                          2800       3100
+Himuro                          2600       2900
+Colmenares                      2500       2800
+Weiss                           8000       8300
+Fripp                           8200       8500
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Kaufling                        7900       8200
+Vollman                         6500       6800
+Mourgos                         5800       6100
+Nayer                           3200       3500
+Mikkilineni                     2700       3000
+Landry                          2400       2700
+Markle                          2200       2500
+Bissot                          3300       3600
+Atkinson                        2800       3100
+Marlow                          2500       2800
+Olson                           2100       2400
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Mallin                          3300       3600
+Rogers                          2900       3200
+Gee                             2400       2700
+Philtanker                      2200       2500
+Ladwig                          3600       3900
+Stiles                          3200       3500
+Seo                             2700       3000
+Patel                           2500       2800
+Rajs                            3500       3800
+Davies                          3100       3400
+Matos                           2600       2900
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Vargas                          2500       2800
+Russell                        14000      14300
+Partners                       13500      13800
+Errazuriz                      12000      12300
+Cambrault                      11000      11300
+Zlotkey                        10500      10800
+Tucker                         10000      10300
+Bernstein                       9500       9800
+Hall                            9000       9300
+Olsen                           8000       8300
+Cambrault                       7500       7800
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Tuvault                         7000       7300
+King                           10000      10300
+Sully                           9500       9800
+McEwen                          9000       9300
+Smith                           8000       8300
+Doran                           7500       7800
+Sewall                          7000       7300
+Vishney                        10500      10800
+Greene                          9500       9800
+Marvins                         7200       7500
+Lee                             6800       7100
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Ande                            6400       6700
+Banda                           6200       6500
+Ozer                           11500      11800
+Bloom                          10000      10300
+Fox                             9600       9900
+Smith                           7400       7700
+Bates                           7300       7600
+Kumar                           6100       6400
+Abel                           11000      11300
+Hutton                          8800       9100
+Taylor                          8600       8900
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Livingston                      8400       8700
+Grant                           7000       7300
+Johnson                         6200       6500
+Taylor                          3200       3500
+Fleaur                          3100       3400
+Sullivan                        2500       2800
+Geoni                           2800       3100
+Sarchand                        4200       4500
+Bull                            4100       4400
+Dellinger                       3400       3700
+Cabrio                          3000       3300
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Chung                           3800       4100
+Dilly                           3600       3900
+Gates                           2900       3200
+Perkins                         2500       2800
+Bell                            4000       4300
+Everett                         3900       4200
+McCain                          3200       3500
+Jones                           2800       3100
+Walsh                           3100       3400
+Feeney                          3000       3300
+OConnell                        2600       2900
+
+LAST_NAME                     SALARY SALARY+300
+------------------------- ---------- ----------
+Grant                           2600       2900
+Whalen                          4400       4700
+Hartstein                      13000      13300
+Fay                             6000       6300
+Mavris                          6500       6800
+Baer                           10000      10300
+Higgins                        12008      12308
+Gietz                           8300       8600
+
+107 rows selected.
+
+
+
+
+----SQL> SELECT last_name, salary, salary +10000 FROM employees;
+
+
+
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+King                           24000        34000
+Kochhar                        17000        27000
+De Haan                        17000        27000
+Hunold                          9000        19000
+Ernst                           6000        16000
+Austin                          4800        14800
+Pataballa                       4800        14800
+Lorentz                         4200        14200
+Greenberg                      12008        22008
+Faviet                          9000        19000
+Chen                            8200        18200
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Sciarra                         7700        17700
+Urman                           7800        17800
+Popp                            6900        16900
+Raphaely                       11000        21000
+Khoo                            3100        13100
+Baida                           2900        12900
+Tobias                          2800        12800
+Himuro                          2600        12600
+Colmenares                      2500        12500
+Weiss                           8000        18000
+Fripp                           8200        18200
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Kaufling                        7900        17900
+Vollman                         6500        16500
+Mourgos                         5800        15800
+Nayer                           3200        13200
+Mikkilineni                     2700        12700
+Landry                          2400        12400
+Markle                          2200        12200
+Bissot                          3300        13300
+Atkinson                        2800        12800
+Marlow                          2500        12500
+Olson                           2100        12100
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Mallin                          3300        13300
+Rogers                          2900        12900
+Gee                             2400        12400
+Philtanker                      2200        12200
+Ladwig                          3600        13600
+Stiles                          3200        13200
+Seo                             2700        12700
+Patel                           2500        12500
+Rajs                            3500        13500
+Davies                          3100        13100
+Matos                           2600        12600
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Vargas                          2500        12500
+Russell                        14000        24000
+Partners                       13500        23500
+Errazuriz                      12000        22000
+Cambrault                      11000        21000
+Zlotkey                        10500        20500
+Tucker                         10000        20000
+Bernstein                       9500        19500
+Hall                            9000        19000
+Olsen                           8000        18000
+Cambrault                       7500        17500
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Tuvault                         7000        17000
+King                           10000        20000
+Sully                           9500        19500
+McEwen                          9000        19000
+Smith                           8000        18000
+Doran                           7500        17500
+Sewall                          7000        17000
+Vishney                        10500        20500
+Greene                          9500        19500
+Marvins                         7200        17200
+Lee                             6800        16800
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Ande                            6400        16400
+Banda                           6200        16200
+Ozer                           11500        21500
+Bloom                          10000        20000
+Fox                             9600        19600
+Smith                           7400        17400
+Bates                           7300        17300
+Kumar                           6100        16100
+Abel                           11000        21000
+Hutton                          8800        18800
+Taylor                          8600        18600
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Livingston                      8400        18400
+Grant                           7000        17000
+Johnson                         6200        16200
+Taylor                          3200        13200
+Fleaur                          3100        13100
+Sullivan                        2500        12500
+Geoni                           2800        12800
+Sarchand                        4200        14200
+Bull                            4100        14100
+Dellinger                       3400        13400
+Cabrio                          3000        13000
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Chung                           3800        13800
+Dilly                           3600        13600
+Gates                           2900        12900
+Perkins                         2500        12500
+Bell                            4000        14000
+Everett                         3900        13900
+McCain                          3200        13200
+Jones                           2800        12800
+Walsh                           3100        13100
+Feeney                          3000        13000
+OConnell                        2600        12600
+
+LAST_NAME                     SALARY SALARY+10000
+------------------------- ---------- ------------
+Grant                           2600        12600
+Whalen                          4400        14400
+Hartstein                      13000        23000
+Fay                             6000        16000
+Mavris                          6500        16500
+Baer                           10000        20000
+Higgins                        12008        22008
+Gietz                           8300        18300
+
+107 rows selected.
+
+
+
+
+
+----SQL> select first_name, salary
+  2  from employees
+  3  where salary > 15000;
+
+FIRST_NAME               SALARY
+-------------------- ----------
+Steven                    24000
+Neena                     17000
+Lex                       17000
+
+
+
+
+
+----SQL> select first_name, salary + 500 nuevo_aumento
+  2  from employees
+  3  where salary >15000;
+
+FIRST_NAME           NUEVO_AUMENTO
+-------------------- -------------
+Steven                       24500
+Neena                        17500
+Lex                          17500
+
+
+
+
+
+----SQL> select first_name, salary, salary + 500 nuevo_aumento
+  2  from employees
+  3  where salary > 15000;
+
+
+
+
+FIRST_NAME               SALARY NUEVO_AUMENTO
+-------------------- ---------- -------------
+Steven                    24000         24500
+Neena                     17000         17500
+Lex                       17000         17500
+
+
+
+
+
+----SQL> select first_name Nombre, salary Salario_actual, salary + 500 Nuevo_aumento
+  2  from employees
+  3  where salary >15000;
+
+
+
+
+NOMBRE               SALARIO_ACTUAL NUEVO_AUMENTO
+-------------------- -------------- -------------
+Steven                        24000         24500
+Neena                         17000         17500
+Lex                           17000         17500
+
+
+
+
+----SQL> select first_name Nombre, salary "Salario Actual", salary + 500 "Nuevo Aumento"
+  2  from employees
+  3  where salary > 15000;
+
+
+
+
+NOMBRE               Salario Actual Nuevo Aumento
+-------------------- -------------- -------------
+Steven                        24000         24500
+Neena                         17000         17500
+Lex                           17000         17500
+
+SQL>

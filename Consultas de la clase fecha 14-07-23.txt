@@ -1,0 +1,158 @@
+SELECT * From (
+SELECT ROWNUM, employee_id "Codigo", first_name || '' || last_name "Nombre y Apellido", salary "Salario" 
+From employees
+Order by salary DESC)
+WHERE ROWNUM <=5;
+
+
+//Actividad 2//
+
+SELECT e.employee_id AS Codigo, e.first_name || ' ' || e.last_name AS "Nombre y Apellido", d.department_name, l.city
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id;
+
+SELECT d.department_name AS Departamento, e.employee_id AS Codigo, e.first_name || ' ' || e.last_name AS "Nombre y Apellido"
+FROM departments d
+JOIN employees e ON d.department_id = e.department_id
+ORDER BY d.department_name, e.employee_id;
+
+SELECT d.department_name AS Departamento, SUM(e.salary) AS TotalNomina
+FROM departments d
+JOIN employees e ON d.department_id = e.department_id
+GROUP BY d.department_name;
+
+
+SELECT 
+    SUM(CASE WHEN EXTRACT (YEAR FROM e.hire_date) = 2022 THEN e.salary ELSE e.salary * 1.09 END) * 12 AS "Total Nomina 2023",
+    SUM(e.salary * 12) "Total Nomina 2022",
+    SUM(CASE WHEN EXTRACT (YEAR FROM e.hire_date) = 2022 THEN e.salary * 12 ELSE e.salary * 1.09 * 12 END) - SUM(e.salary * 12)  AS "Total de Aumento"
+FROM employees e;
+
+
+
+SELECT d.department_name AS Departamento, SUM(e.salary) AS "Total Nomina"
+FROM departments d
+JOIN employees e ON d.department_id = d.department_id 
+GROUP BY d.department_name
+HAVING SUM(e.salary) >= 5500;
+
+SELECT e.employee_id AS Codigo, e.first_name || '' || e.last_name AS "Nombre Empleado"
+FROM employees e
+WHERE e.hire_date BETWEEN TO_DATE('01-01-1998', 'DD-MM-YYYY') AND TO_DATE('31-12-1999', 'DD-MM-YYYY');
+
+
+SELECT e.employee_id AS Codigo, e.first_name || '' || e.last_name AS "Nombre Empleado"
+FROM employees e
+WHERE salary BETWEEN 5000 AND 11000;
+
+
+SELECT d.department_id, d.department_name
+FROM departments d
+WHERE d.department_name LIKE 'IT%';
+
+
+SELECT d.department_id, d.department_name
+FROM departments d
+WHERE d.department_name LIKE '%ing';
+
+SELECT * FROM departments;
+
+
+SELECT e.salary, d.department_name AS "Departamento"
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+WHERE e.manager_id IS NULL;
+
+SELECT * FROM jobs;
+
+SELECT e.*
+FROM employees e
+JOIN jobs j ON e.job_id = j.job_id
+WHERE j.job_title = 'Programmer' AND e.salary > 5000;
+
+
+SELECT e.*
+FROM employees e
+JOIN jobs j ON e.job_id = j.job_id
+WHERE j.job_title <> 'Programmer' AND e.salary > 8000;
+
+
+
+SELECT RPAD(UPPER(e.first_name), 15, '$') AS "Nombre Editado"
+FROM employees e;
+
+select min(salary)"Salario Minimo",max(salary)"Salario Maximo",round(avg(salary))"Salario Promedio",sum(salary)"Salario Maximo"
+from employees;
+
+
+select max(first_name)
+from employees;
+
+select max(hire_date)
+from employees ;
+
+
+select first_name,hire_date
+from employees
+order by 2 desc;
+
+select * from
+(
+select first_name,hire_date
+from employees
+)
+p;
+
+select ID,Nombre,Ingreso from(
+select employee_id ID,first_name Nombre,hire_date Ingreso
+from employees
+order by hire_date desc
+)
+where rownum <=2;
+
+
+
+select first_name,hire_date from employees A
+WHERE hire_date =(select max(hire_date) from employees B
+);
+
+select min(hire_date)
+from employees ;
+
+select first_name,hire_date from employees A
+WHERE hire_date =(select min(hire_date) from employees B
+);
+
+select department_id,to_char(       round(avg(salary),2),'999,999.99'     )
+from employees 
+group by department_id;
+
+select avg(salary)
+from employees; 
+
+
+select count (*) from employees;
+
+select count (department_id) from employees;
+
+select count (employee_id) from employees;
+
+select  department_id from employees order by 1;
+
+select count (DISTINCT department_id)from employees;
+
+select count (department_id)from departments;
+
+estructura de datos: todo lugar donde se guardan datos.
+Funcion: es todo aquello que devuelve un valor
+
+select sysdate from dual;
+
+select trunc(sysdate - hire_date) from employees;
+
+select trunc((sysdate - hire_date)/365) from employees;
+
+select months_between (sysdate,hire_date)from employees; 
+
+select trunc(months_between (to_date('14-07-2023','dd-mm-yyyy'),  to_date('12-03-2023','dd-mm-yyyy'))) "Meses Trasncurridos"  from dual;

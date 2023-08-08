@@ -1,0 +1,68 @@
+**** Clase 1 *****
+
+Hacer login en oracle:
+conect system/Admin23r2
+system = usuario
+Admin23r2 = password
+
+Hacer login en oracle como admin:
+connect sys as sysdba
+password: Admin23r2
+
+Unlock user:
+alter user *user* account unlock;
+*It should be writed on a superuser account*
+
+HR password:
+Hr23
+
+Select Statements:
+
+How to write a SQL SELECT:
+SELECT data FROM table
+WHERE condition
+
+Examples:
+SELECT id FROM Employees
+WHERE id >= 71;
+
+Seleccionar el Apellido y el salario sumando 500 a los empleados que ganen >= 15000:
+Select last_name, salary + 500
+  2  from employees
+  3  where salary >= 15000;
+
+Seleccionar el Apellido y el salario actual y un hipotetico salario sumandole 500, agregando tambien un alias al header de cada columna, a los empleados que ganen >= 15000:
+Select last_name "Apellido",salary "Salario actual", salary + 500 "Nuevo Sueldo"
+  2  from employees
+  3  where salary >= 15000;
+
+
+Describe Examples:
+
+Desc hr.employees;
+
+Desc = Describe command 
+hr. = Schema
+Employees = Object
+
+***** Clase 2 ******
+
+Concatenar datos:
+select employee_id "Codigo", first_namE || last_name 
+from employees 
+where employee_id > 200;
+
+select employee_id "Codigo", first_name || ' ' || last_name "Nombre y Apellido " 
+from employees 
+where employee_id > 200;
+
+select E.employee_id "Codigo", E.first_name || ' ' || E.last_name "Nombre y Apellido", D.department_name Departamento 
+from employees E, departments D 
+where E.employee_id > 200 and D.department_id = E.department_id;
+
+Cambiar formato:
+ col department_name format A16;   
+
+select E.employee_id "Codigo", E.first_name || ' ' || E.last_name "Nombre y Apellido", EE.manager_id, EE.first_name Jefe
+  from Employees E, Employees EE
+  Where E.manager_id = EE.employee_id;
